@@ -162,8 +162,25 @@ issue_d: This would be data leakage, we wouldn't know beforehand whether or not 
 
 earliest_cr_line: df['earliest_cr_year'] = df['earliest_cr_line'].apply(lambda date:int(date[-4:]))
 
-Train Test Split
+Train Test Split: erform a train/test split with test_size=0.2 and a random_state of 101.
 
+Normalizing the Data
 
+Creating the Model: Build a sequential model to will be trained on the data. You have unlimited options here, but here is what the solution uses: a model that goes 78 --> 39 --> 19--> 1 output neuron.
+
+model.fit(x=X_train, 
+          y=y_train, 
+          epochs=25,
+          batch_size=256,
+          validation_data=(X_test, y_test), 
+          )
+          
+Save your model: model.save('full_data_project_model.h5')  
+
+Evaluating Model Performance: Plot out the validation loss versus the training loss.
+
+Create predictions from the X_test set and display a classification report and confusion matrix for the X_test set.
+
+new_customer.values
 
 
