@@ -37,3 +37,43 @@ Further Evaluations
 Predicting on brand new data
 
 Saving and Loading a Model
+
+
+![2-Logo](Images/ANN-house.png)
+
+EDA: isnull, sns.displot(df['price']), df.corr()['price'].sort_values(), sns.scatterplot(x='price',y='sqft_living',data=df), sns.boxplot(x='bedrooms',y='price',data=df), sns.scatterplot(x='long',y='lat',data=df,hue='price')
+
+Let us only use bottom 99% of data based on price to cut off outliers: non_top_1_perc = df.sort_values('price',ascending=False).iloc[216:]
+
+Working with Feature Data - Feature Engineering to remove features that are not important
+
+Feature Engineering from Date: df['date'] = pd.to_datetime(df['date']), df['month'] = df['date'].apply(lambda date:date.month)
+
+Feature Engineering needs to consider if should convert a number-like category column to dummies OR keep its continuous number values makes more sense!
+
+Scaling and Train Test Split
+
+Scaling
+
+Creating a Model: Because we have 19 incoming features, 19 nerons in each layer
+
+Training the Model: model.fit(x=X_train,y=y_train,
+          validation_data=(X_test,y_test),
+          batch_size=128,epochs=400)
+
+validation_data=(X_test,y_test) will not affect weights/bias of the network
+
+Keras will only use training data to update weight/bias and see how it is doing on training and validation data!
+
+Smaller batch size, longer training to take, less likely to overfit your data because you are not passing in your entire training. Instead, focusing smaller batches.¶
+
+Shows losses on training set and validation data: Take the mse of predictions against true values and try to minimize that through optimizer
+
+Predicting on Brand New Data: mean_absolute_error(y_test,predictions), plt.scatter(y_test,predictions), errors = y_test.reshape(6480, 1) - predictions
+
+Predicting on a brand new house: predicted-287402.97, actual-221900.0000
+
+
+
+
+
