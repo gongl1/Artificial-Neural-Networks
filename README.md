@@ -65,7 +65,7 @@ validation_data=(X_test,y_test) will not affect weights/bias of the network
 
 Keras will only use training data to update weight/bias and see how it is doing on training and validation data!
 
-Smaller batch size, longer training to take, less likely to overfit your data because you are not passing in your entire training. Instead, focusing smaller batches.¶
+Smaller batch size, longer training to take, less likely to overfit your data because you are not passing in your entire training. Instead, focusing smaller batches.
 
 Shows losses on training set and validation data: Take the mse of predictions against true values and try to minimize that through optimizer
 
@@ -74,6 +74,26 @@ Predicting on Brand New Data: mean_absolute_error(y_test,predictions), plt.scatt
 Predicting on a brand new house: predicted-287402.97, actual-221900.0000
 
 
+![3-Logo](Images/ANN-cancer.png)
 
+EDA: sns.countplot(x='benign_0__mal_1',data=df), sns.heatmap(df.corr()), df.corr()['benign_0__mal_1'].sort_values().plot(kind='bar')
 
+Train Test Split
+
+Scaling Data
+
+Creating the Model: # For a binary classification problem
+model.compile(optimizer='rmsprop',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+              
+Training the Model: 
+
+Example One: Choosing too many epochs and overfitting! Overfitting: Loss still going down, but orange is going up for epochs.
+
+Example Two: Early Stopping. We obviously trained too much! Let's use early stopping to track the val_loss and stop training once it begins increasing too much!
+
+Example Three: Adding in DropOut Layers. model.add(Dropout(0.5)), 0.5 percent neurons are going to be turned off for each batch. Better result, blue and orange are flattening out at same epoch!
+
+Model Evaluation: predictions = model.predict_classes(X_test). print(classification_report(y_test,predictions)). print(confusion_matrix(y_test,predictions)).
 
